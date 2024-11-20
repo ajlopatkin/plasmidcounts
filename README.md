@@ -282,7 +282,7 @@ Upon successful execution of the scripts, the following output files are generat
 
 ## Dataset
 
-You can download the dataset required for this analysis from the following link: [Download Dataset Here] (https://example.com/dataset)
+You can download the dataset required for this analysis from the following link: [Download Dataset Here](https://example.com/dataset)
 
 ## Contributing
 
@@ -317,7 +317,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Contact
 
-For any inquiries or support, please contact [allison.lopatkin@rochester.edu](mailto:allison.lopatkin@rochester.edu).
+For any inquiries or support, please email at [allison.lopatkin@rochester.edu](mailto:allison.lopatkin@rochester.edu).
 
 ---
 
