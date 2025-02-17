@@ -61,6 +61,7 @@ def build_overlap_matrix(blast_results):
 import os
 blast_dir = "/home/ashar58/Downloads/ncbi-blast-2.15.0+/bin"
 plasmidfinder_path = "/scratch/alopatki_lab/Sharma/summer_project/plasmidfinder"
+plasmidfinder_db = "/scratch/alopatki_lab/Sharma/summer_project/plasmidfinder_db"
 mash_path = "/scratch/alopatki_lab/Sharma/mash"
 os.environ["PATH"] += os.pathsep + blast_dir
 os.environ["PATH"] += os.pathsep + plasmidfinder_path
@@ -161,7 +162,7 @@ if do_plasfinder:
                 time.sleep(0.5)
 
                 curr_fname = os.path.join(dirpath, cfile)
-                os.system(f"plasmidfinder.py -i {curr_fname} -o {tmp_path} -p /scratch/alopatki_lab/Sharma/summer_project/plasmidfinder_db >/dev/null 2>&1")
+                os.system(f"plasmidfinder.py -i {curr_fname} -o {tmp_path} -p {plasmidfinder_db} >/dev/null 2>&1")
                 # get the results in json object and then append to the container
                 with open(json_path) as f:
                     obj = json.load(f)
