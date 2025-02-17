@@ -85,6 +85,12 @@ This project involves the analysis of plasmid counts within genomic data. The pr
 - `plasmidcount_results.csv`: Detailed results including filename, file type, contig information, plasmid details, and top hits.
 - `Plasmidfinder_results.csv`: Results from running PlasmidFinder on the input data.
 
+Before running the application, please extract the data zip file and update the following configuration variables to point to the corresponding folders within the extracted contents:
+
+- **basedir**: Set to the path of the `basedir` folder.
+- **plasmidfinder_db**: Set to the path of the `plasmidfinder_db` folder.
+- **db_path**: Set to the path of the `db` folder.
+  
 **Instructions**:
 
 1. **Configure Parameters**:
@@ -93,9 +99,10 @@ This project involves the analysis of plasmid counts within genomic data. The pr
 
    ```python
    basedir = "/path/to/your/data"
-   db_path = "/path/to/plasmidfinder_db"
+   db_path = "/path/to/db"
    blast_dir = "/path/to/blast/bin"
    plasmidfinder_path = "/path/to/plasmidfinder"
+   plamidfinder_db = "path/to/plasmidfinder_db"
    mash_path = "/path/to/mash"
    output_dir = "/path/to/save/results"
    ```
@@ -282,7 +289,7 @@ Upon successful execution of the scripts, the following output files are generat
 
 ## Dataset
 
-You can download the dataset required for this analysis from the following link: [Download Dataset Here](https://example.com/dataset)
+You can download the dataset required for this analysis from the following link: [Download Dataset Here](https://rochester.box.com/s/vf26am6pdqmu5h35881q42xp857u5ze9)
 
 ## Contributing
 
