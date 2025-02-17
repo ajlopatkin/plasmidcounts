@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)
 
-This repository serves as the supplementary code base for the research paper titled: **[Title]**, authored by: **[Authors]**. The provided scripts and environment configurations allow users to replicate the plasmid count analysis performed in our study.
+This repository serves as the supplementary code base for the research paper titled: **Plasmid prevalence is independent of antibiotic resistance in environmental Enterobacteriaceae**, authored by: **Danya Gewurz (dgewurz@gmail.com), Abhishek Sharma (ashar58@ur.rochester.edu), Joanna Harrison (joannacharrison@comcast.net), Ivan Lee (ilee24@u.rochester.edu), Suhyeon Kim (skim328@ur.rochester.edu), Nicole Rondeau (nicole.rondeau@nyulangone.org), JJ Miranda (jmiranda@barnard.edu), Brian Mailloux (bmailloux@barnard.edu), Kerry Hamilton (kerry.hamilton@asu.edu), Allison J. Lopaltin (allison.lopatkin@rochester.edu)**. The provided scripts and environment configurations allow users to replicate the plasmid count analysis performed in our study.
 
 ## Table of Contents
 
