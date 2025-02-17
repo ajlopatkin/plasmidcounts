@@ -54,8 +54,8 @@ This project involves the analysis of plasmid counts within genomic data. The pr
 1. **Clone the Repository**
 
    ```bash
-   git clone git@github.com:ajlopatkin/plasmidcounts.git
-   cd plasmid-count-analysis
+   git clone https://github.com/ajlopatkin/plasmidcounts
+   cd plasmidcounts
    ```
 
 
