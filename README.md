@@ -115,7 +115,7 @@ Before running the application, please extract the data zip file and update the 
 
 ### sensitivity_analysis.py
 
-**Description**: Similar to `main.py`, this script performs plasmid count analysis across various parameter values to conduct sensitivity analysis. Each parameter is varied one at a time from its base value while keeping others constant.
+**Description**: Similar to `main.py`, this script performs plasmid count analysis across various parameter values to conduct sensitivity analysis. Each parameter is varied one at a time from its base value while keeping others constant. Please update the path parameters in this script similar to what was done before running `main.py` file.
 
 **Example Usage**:
 
