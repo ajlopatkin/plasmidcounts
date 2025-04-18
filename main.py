@@ -58,21 +58,13 @@ def build_overlap_matrix(blast_results):
 
     return overlap_matrix
 
-import os
-blast_dir = "/home/ashar58/Downloads/ncbi-blast-2.15.0+/bin"
-plasmidfinder_path = "/scratch/alopatki_lab/Sharma/summer_project/plasmidfinder"
-plasmidfinder_db = "/scratch/alopatki_lab/Sharma/summer_project/plasmidfinder_db"
-mash_path = "/scratch/alopatki_lab/Sharma/mash"
-os.environ["PATH"] += os.pathsep + blast_dir
-os.environ["PATH"] += os.pathsep + plasmidfinder_path
-os.environ["PATH"] += os.pathsep + mash_path
 
 # files
-basedir = "/scratch/alopatki_lab/Sharma/Project-6"
+basedir = "/path/to/your/data"
 file_dirs = ["processed_data/processed_all_090323-flat_fasta","processed_data/long_read_genomes_only_assemblies_20221105"]
 read_type = ["short", "long"]
-output_dir = "/scratch/alopatki_lab/Sharma/Project-6/plasmid-counts/output_testnov10"
-db_path = "/scratch/alopatki_lab/Sharma/Project-6/plasmid-counts/db"
+output_dir = "/path/to/save/results"
+db_path = "/path/to/db"
 tmp_path = os.path.join(output_dir, "tmp_dir")
 
 # parameters
@@ -162,7 +154,7 @@ if do_plasfinder:
                 time.sleep(0.5)
 
                 curr_fname = os.path.join(dirpath, cfile)
-                os.system(f"plasmidfinder.py -i {curr_fname} -o {tmp_path} -p {plasmidfinder_db} >/dev/null 2>&1")
+                os.system(f"plasmidfinder.py -i {curr_fname} -o {tmp_path} >/dev/null 2>&1")
                 # get the results in json object and then append to the container
                 with open(json_path) as f:
                     obj = json.load(f)
@@ -399,12 +391,10 @@ if not os.path.isdir(blast_tmp_dir):
 for index, row in grouped_df.iterrows():
     for seq_record in SeqIO.parse(row.filename, "fasta"):
         if seq_record.id in row.contig:
-            print(f"Blasting {row.filename.split('/')[-1]} {seq_record.id} against PLSdb...")
-            # print(tmp_fna)
+            print(f"Blasting {row.filename.split('/')[-1]} against PLSdb...")
+
             # write the fasta file and then execute the blast
             tmp_fna = os.path.join(blast_tmp_dir, "tmp.fasta")
-            # print(blast_tmp_dir)
-            # print(tmp_fna)
             tmp_txt = os.path.join(blast_tmp_dir, "blast_tmp.txt")
             SeqIO.write(seq_record, tmp_fna, "fasta")
             cline = NcbiblastnCommandline(query=tmp_fna,
@@ -412,23 +402,17 @@ for index, row in grouped_df.iterrows():
                                           out=tmp_txt,
                                           outfmt="6 sseqid pident length evalue")
             cline()
-    
+
             # remove the beginning lines, since they are not structured, then read the blast results
-            with open(tmp_txt, 'r') as file:
-                lines = file.readlines()
-            with open(tmp_txt, 'w') as file:
-                for line in lines:
-                    if not line.startswith('#'):
-                        file.write(line)
-    
+            os.system(f"sed -i '' '/^#/d' {tmp_txt}")
             blast_df = pd.read_csv(tmp_txt, sep='\t', header=None)
             blast_df.rename(columns={0: 'seqID', 1: 'pctId', 2: 'length', 3: 'eval'}, inplace=True)
-    
+
             # drop rows that do not have enough coverage or pctID
             blast_df.drop(blast_df[(blast_df["pctId"] < blast_id_cutoff)
                           | (blast_df["length"] < blast_len_cutoff)].index,
                           inplace=True)
-    
+
             # get unique hits and insert them into the dataframe
             blast_df.drop_duplicates(subset=['seqID'], inplace=True)
             unique_hits = list(blast_df["seqID"])
@@ -436,13 +420,12 @@ for index, row in grouped_df.iterrows():
                 top_hit = blast_df.sort_values(by=["pctId", "length"], ascending=False).reset_index()["seqID"][0]
                 grouped_df.at[index, "top_hit"] = top_hit
             grouped_df.at[index, "blast_plasmids"] = unique_hits
-    
+
             # remove temp blast files
             if os.path.isfile(tmp_fna):
                 os.remove(tmp_fna)
             if os.path.isfile(tmp_txt):
                 os.remove(tmp_txt)
-
 
 # pickle the final DF to be used later (faster than having to re-run blast, etc.)
 pkl_path = os.path.join(output_dir, "plasmid_results.pkl")
@@ -497,7 +480,57 @@ for filename in list(grouped_df["filename"].unique()):
                                                       f"{grouped_df['contig'].loc[key_idx]}"
         grouped_df.drop(index=key_idx, inplace=True)
 
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# stage 5: generate multi-fastas
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# print("Writing combined contig multi-fastas...")
+# unique_files = list(grouped_df["filename"].unique())
+# combined_fasta_dir = os.path.join(output_dir, "combined_fastas")
+# if not os.path.isdir(combined_fasta_dir):
+#     os.mkdir(combined_fasta_dir)
+
+# for file in unique_files:
+#     base_file = file.split("/")[-1].split(".fasta")[0]
+#     target_file = base_file + "_plasmidcontigs.fasta"
+#     out = os.path.join(combined_fasta_dir, target_file)
+
+#     filtered_df = grouped_df[grouped_df["filename"] == file]
+#     raw_fasta = list(SeqIO.parse(file, "fasta"))
+#     full_seq = []
+
+#     for index, row in filtered_df.iterrows():
+#         contigs = row.contig.split("|")
+#         seq_to_add = Seq("")
+#         header = f"sample={base_file}; contigs={row.contig}; replicons={row.plasmid_name}; contig_len="
+#         for contig in contigs:
+#             if contig == 'nan':
+#                 continue
+#             curr_fasta = [x for x in raw_fasta if x.name == contig][0]
+#             seq_to_add += curr_fasta.seq
+#             header += f"{len(curr_fasta.seq)}|"
+
+#         full_seq.append(SeqRecord(seq_to_add,
+#                                   id=header.rstrip("|"),
+#                                   name=header.rstrip("|"),
+#                                   description=""))
+#     SeqIO.write(full_seq, out, "fasta")
+
+# print("Writing combined PLSdb multi-fastas...")
+# combined_plsdb_dir = os.path.join(output_dir, "combined_plsdb")
+# if not os.path.isdir(combined_plsdb_dir):
+#     os.mkdir(combined_plsdb_dir)
+
+# for file in unique_files:
+#     full_plsdb = SeqIO.parse(plsdb_fna, "fasta")
+#     base_file = file.split("/")[-1].split(".fasta")[0]
+#     target_file = base_file + "_allplsdb.fasta"
+#     out = os.path.join(combined_plsdb_dir, target_file)
+
+#     filtered_df = grouped_df[grouped_df["filename"] == file]
+#     all_plasmids = [x for x in filtered_df["top_hit"]]
+#     plas_seqs = [f for f in full_plsdb if f.id in all_plasmids]
+#     SeqIO.write(plas_seqs, out, "fasta")
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # cleanup & output
@@ -533,4 +566,3 @@ for d in all_dirs:
 # write the outputs
 grouped_df.drop(labels="blast_plasmids", axis=1).to_csv(os.path.join(output_dir, "plasmidcount_results.csv"))
 final_count_df.to_csv(os.path.join(output_dir, "plasmidcount_aggregated.csv"))
-
