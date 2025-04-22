@@ -101,9 +101,12 @@ Before running the application, please extract the data zip file and update the 
    db_path = "/path/to/db"
    output_dir = "/path/to/save/results"
    ```
-You can download the example dataset and plasmidFinder database required for this analysis from the following link: [Download Dataset Here](https://rochester.box.com/s/7umyf7wjyux91ip2z4aku67jr63v5fcw)
+  You can download the example dataset and plasmidFinder database required for this analysis from the following link: [Download Dataset   Here](https://rochester.box.com/s/7umyf7wjyux91ip2z4aku67jr63v5fcw)
+
 2. **Run the Script**:
+   
   Now, you can run your code on the terminal.
+
    ```bash
    python main.py
    ```
