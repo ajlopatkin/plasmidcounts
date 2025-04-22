@@ -101,9 +101,9 @@ Before running the application, please extract the data zip file and update the 
    db_path = "/path/to/db"
    output_dir = "/path/to/save/results"
    ```
-
+You can download the example dataset and plasmidFinder database required for this analysis from the following link: [Download Dataset Here](https://rochester.box.com/s/7umyf7wjyux91ip2z4aku67jr63v5fcw)
 2. **Run the Script**:
-
+  Now, you can run your code on the terminal.
    ```bash
    python main.py
    ```
@@ -281,10 +281,6 @@ Upon successful execution of the scripts, the following output files are generat
    - **Description**: Raw results obtained from running PlasmidFinder on the input data.
    - **Columns**:
      - Detailed plasmid identification results per contig.
-
-## Dataset
-
-You can download the dataset required for this analysis from the following link: [Download Dataset Here](https://rochester.box.com/s/vf26am6pdqmu5h35881q42xp857u5ze9)
 
 ## Contributing
 
