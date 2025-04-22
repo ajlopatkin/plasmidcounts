@@ -88,7 +88,6 @@ This project involves the analysis of plasmid counts within genomic data. The pr
 Before running the application, please extract the data zip file and update the following configuration variables to point to the corresponding folders within the extracted contents:
 
 - **basedir**: Set to the path of the `basedir` folder.
-- **plasmidfinder_db**: Set to the path of the `plasmidfinder_db` folder.
 - **db_path**: Set to the path of the `db` folder.
   
 **Instructions**:
@@ -100,10 +99,6 @@ Before running the application, please extract the data zip file and update the 
    ```python
    basedir = "/path/to/your/data"
    db_path = "/path/to/db"
-   blast_dir = "/path/to/blast/bin"
-   plasmidfinder_path = "/path/to/plasmidfinder"
-   plamidfinder_db = "path/to/plasmidfinder_db"
-   mash_path = "/path/to/mash"
    output_dir = "/path/to/save/results"
    ```
 
