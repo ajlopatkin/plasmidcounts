@@ -95,13 +95,13 @@ Before running the application, please extract the data zip file and update the 
 1. **Configure Parameters**:
 
    Open `main.py` and specify the following paths:
-
+   You can download the example dataset and plasmidFinder database required for this analysis in [here](https://rochester.box.com/s/u7vzsq7ov03h4zt9d4nmq2lk117qvrgc)
    ```python
    basedir = "/path/to/your/data"
    db_path = "/path/to/db"
    output_dir = "/path/to/save/results"
    ```
-  You can download the example dataset and plasmidFinder database required for this analysis from the following link: [Download Dataset   Here](https://rochester.box.com/s/7umyf7wjyux91ip2z4aku67jr63v5fcw)
+  
 
 2. **Run the Script**:
    
