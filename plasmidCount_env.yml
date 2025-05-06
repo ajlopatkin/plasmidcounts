@@ -25,7 +25,7 @@ dependencies:
   - libsqlite=3.43.0=h58db7d2_0
   - libzlib=1.2.13=h8a1eda9_5
   - llvm-openmp=16.0.6=hff08bdf_0
-  - _openmp_mutex=4.5=1_gnu
+  # - _openmp_mutex=4.5=1_gnu
   - mash=2.3=hf785b45_2
   - ncurses=6.4=hf0c8a7f_0
   - numpy=1.25.2=py311hc44ba51_0
