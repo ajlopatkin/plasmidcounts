@@ -21,10 +21,12 @@ dependencies:
   - libgfortran=5.0.0=12_3_0_h97931a8_1
   - libgfortran5=12.3.0=hbd3c1fe_1
   - liblapack=3.9.0=17_osx64_openblas
-  - libopenblas=0.3.23=openmp_h429af6e_0
+  # - libopenblas=0.3.23=openmp_h429af6e_0
+  - libopenblas=0.3.23
+  - llvm-openmp 
   - libsqlite=3.43.0=h58db7d2_0
   - libzlib=1.2.13=h8a1eda9_5
-  - llvm-openmp=16.0.6=hff08bdf_0
+  # - llvm-openmp=16.0.6=hff08bdf_0
   - mash=2.3=hf785b45_2
   - ncurses=6.4=hf0c8a7f_0
   - numpy=1.25.2=py311hc44ba51_0
