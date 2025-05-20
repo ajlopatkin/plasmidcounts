@@ -13,7 +13,7 @@ def count_matches(df1, df2):
 
 
 # script params
-root_dir = "/path/to/data/root"
+root_dir = "/Users/ajllopat/PycharmProjects/plasmidcounts/sensitivity/processing"
 true_count_file = "true_counts.csv"
 true_df = pd.read_csv(os.path.join(root_dir, true_count_file)).set_index("names_unique")
 full_path = os.path.join(root_dir, true_count_file)
@@ -93,7 +93,7 @@ for n in calibrations:
         r2_condition.append(max_r2_condition)
 
         # get all conditions with r2 > 0.9
-        thresh_idx = [x for x, val in enumerate(r2s) if val > 0.9]
+        thresh_idx = [x for x, val in enumerate(r2s) if val > 0.95]
         thresh_condition = [all_conditions[x] for x in thresh_idx]
 
         # calculate r2 for ALL strains for the conditions found above
@@ -125,7 +125,9 @@ for n in calibrations:
                                'conditions': r2_condition,
                                'thresh_mean': stat.tmean(r2_thresh),
                                'thresh_sem': stat.sem(r2_thresh),
+                               'thresh_std': stat.tstd(r2_thresh),
                                'mean': stat.tmean(r2_collect),
+                               'std': stat.tstd(r2_collect),
                                'sem': stat.sem(r2_collect)})
 
     match_per_calibration.append({'calibration': n,
@@ -133,14 +135,16 @@ for n in calibrations:
                                   'conditions': match_condition,
                                   'thresh_mean': stat.tmean(match_thresh),
                                   'thresh_sem': stat.sem(match_thresh),
+                                  'thresh_std': stat.tstd(match_thresh),
                                   'mean': stat.tmean(match_collect),
+                                  'std': stat.tstd(match_collect),
                                   'sem': stat.sem(match_collect)})
 
 # plot r2 threshold
 r2_mean = [x['thresh_mean'] for x in r2_per_calibration]
-r2_sem = [x['thresh_sem'] for x in r2_per_calibration]
+r2_err = [x['thresh_std'] for x in r2_per_calibration]
 plt.figure(figsize=(8, 5))
-plt.errorbar(calibrations, r2_mean, yerr=r2_sem, fmt='-o', capsize=5, color='blue', label='Mean +- SEM')
+plt.errorbar(calibrations, r2_mean, yerr=r2_err, fmt='-o', capsize=5, color='blue', label='Mean +- SEM')
 plt.xlabel("Calibration Size")
 plt.ylabel("Thresh R2")
 plt.title("Bootstrap Calibration Performance - Threshold R2")
@@ -149,9 +153,9 @@ plt.tight_layout()
 
 # plot match threshold
 match_mean = [x['thresh_mean'] for x in match_per_calibration]
-match_sem = [x['thresh_sem'] for x in match_per_calibration]
+match_err = [x['thresh_std'] for x in match_per_calibration]
 plt.figure(figsize=(8, 5))
-plt.errorbar(calibrations, match_mean, yerr=match_sem, fmt='-o', capsize=5, color='blue', label='Mean +- SEM')
+plt.errorbar(calibrations, match_mean, yerr=match_err, fmt='-o', capsize=5, color='blue', label='Mean +- SEM')
 plt.xlabel("Calibration Size")
 plt.ylabel("Thresh Match Pct")
 plt.title("Bootstrap Calibration Performance - Threshold Match Percentage")
