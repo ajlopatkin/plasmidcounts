@@ -3,7 +3,7 @@ import numpy as np
 from plasmidcounts import plasmidcounts
 
 # script vars
-sens_range = 0.25
+sens_range = 0.5
 num_slices = 50
 num_sets = 100
 base_dir = "/path/to/data/root"
@@ -31,7 +31,7 @@ overlap_cutoff_short_range = np.linspace(overlap_cutoff_short*(1-sens_range), ov
 overlap_cutoff_long_range = np.linspace(overlap_cutoff_long*(1-sens_range), overlap_cutoff_long*(1+sens_range), num_slices).tolist()
 
 param_sets = []
-for i in range(72, 76):
+for i in range(num_sets):
     # randomly choose a parameter value
     current_params = {"mash_cutoff":random.choice(mash_cutoff_range),
                       "plasfinder_cov":random.choice(plasfinder_cov_range),
