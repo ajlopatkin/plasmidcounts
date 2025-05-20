@@ -32,8 +32,6 @@ strain_plasmid_df = pd.DataFrame(columns=None, index=all_strains)
 for d in all_dirs:
     if not os.path.isdir(os.path.join(root_dir, d)):
         continue
-    elif d == "base_params":
-        continue
 
     genome_names = []
     plasmid_count = []
@@ -137,28 +135,6 @@ for n in calibrations:
                                   'thresh_sem': stat.sem(match_thresh),
                                   'mean': stat.tmean(match_collect),
                                   'sem': stat.sem(match_collect)})
-
-# plot R2
-r2_mean = [x['mean'] for x in r2_per_calibration]
-r2_sem = [x['sem'] for x in r2_per_calibration]
-plt.figure(figsize=(8, 5))
-plt.errorbar(calibrations, r2_mean, yerr=r2_sem, fmt='-o', capsize=5, color='blue', label='Mean +- SEM')
-plt.xlabel("Calibration Size")
-plt.ylabel("R2")
-plt.title("Bootstrap Calibration Performance - R2")
-plt.grid(True)
-plt.tight_layout()
-
-# plot pct match
-match_mean = [x['mean'] for x in match_per_calibration]
-match_sem = [x['sem'] for x in match_per_calibration]
-plt.figure(figsize=(8, 5))
-plt.errorbar(calibrations, match_mean, yerr=match_sem, fmt='-o', capsize=5, color='blue', label='Mean +- SEM')
-plt.xlabel("Calibration Size")
-plt.ylabel("Match Pct")
-plt.title("Bootstrap Calibration Performance - Match Percentage")
-plt.grid(True)
-plt.tight_layout()
 
 # plot r2 threshold
 r2_mean = [x['thresh_mean'] for x in r2_per_calibration]

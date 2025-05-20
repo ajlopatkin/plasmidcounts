@@ -7,8 +7,8 @@ sens_range = 0.25
 num_slices = 50
 num_sets = 100
 base_dir = "/path/to/data/root"
-file_dir = "input_data"
-read_type = "short"
+file_dir = ["input_data"]
+read_type = ["short"]
 db_path = "/path/to/plasmid/db"
 output_base = "/path/to/output/base"
 
@@ -46,7 +46,7 @@ for i in range(72, 76):
     current_output = f"{output_base}/iteration_{i}"
 
     # run plasmidcounts with the current params
-    plasmidcounts(base_dir, [file_dir], [read_type], current_output, db_path,
+    plasmidcounts(base_dir, file_dir, read_type, current_output, db_path,
                      mash_cutoff=current_params['mash_cutoff'],
                      plasfinder_cov=current_params['plasfinder_cov'],
                      plasfinder_pid=current_params['plasfinder_pid'],
@@ -67,4 +67,4 @@ for i in range(72, 76):
 
 # run the base params last
 current_output = f"{output_base}/base_params"
-plasmidcounts(base_dir, [file_dir], [read_type], current_output, db_path)
+plasmidcounts(base_dir, file_dir, read_type, current_output, db_path)
