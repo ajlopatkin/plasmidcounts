@@ -6,11 +6,11 @@ from plasmidcounts import plasmidcounts
 sens_range = 0.25
 num_slices = 50
 num_sets = 100
-base_dir = "/Users/ajllopat/PycharmProjects/plasmidcounts/sensitivity/"
+base_dir = "/path/to/data/root"
 file_dir = "input_data"
 read_type = "short"
-db_path = "/Volumes/Samsung_T5/sequencing/NSF_ECOLI/plasmid-counts/db/"
-output_base = "/Users/ajllopat/PycharmProjects/plasmidcounts/sensitivity/processing"
+db_path = "/path/to/plasmid/db"
+output_base = "/path/to/output/base"
 
 #base params
 mash_cutoff = 0.05

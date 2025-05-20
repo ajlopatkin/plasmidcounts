@@ -13,7 +13,7 @@ def count_matches(df1, df2):
 
 
 # script params
-root_dir = "/Users/ajllopat/PycharmProjects/plasmidcounts/sensitivity/processing/"
+root_dir = "/path/to/data/root"
 true_count_file = "true_counts.csv"
 true_df = pd.read_csv(os.path.join(root_dir, true_count_file)).set_index("names_unique")
 full_path = os.path.join(root_dir, true_count_file)
