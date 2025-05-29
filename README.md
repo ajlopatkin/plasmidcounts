@@ -50,7 +50,7 @@ This project This project processes genomic FASTA files to detect and quantify p
 - **Conda**: Anaconda or Miniconda installed
 - **Dataset and Database**: [Example Data and PLSDB database](https://rochester.box.com/s/u7vzsq7ov03h4zt9d4nmq2lk117qvrgc)
   - `basedir/`
-    - `processed_data/ with two folders; processed_all_090323-flat_fasta/`: 238 short-read FASTA files
+    - `processed_data/ with two folders; processed_all_090323-flat_fasta/`: 205 short-read FASTA files
     - `long_read_genomes_only_assemblies_20221105/`: 33 placeholder for long-read data
   - `db/` folder with plsdb.fna: the main plasmid reference database (required), plsdb.fna.nhr, plsdb.fna.nin, plsdb.fna.nsq: BLAST-formatted index files
 
