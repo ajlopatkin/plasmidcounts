@@ -1,5 +1,5 @@
 # plasmidcount_env.yml
-name: plasmidcount
+name: plasmidCount_env
 channels:
   - conda-forge
   - bioconda
