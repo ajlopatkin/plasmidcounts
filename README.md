@@ -22,7 +22,7 @@ This repository serves as the supplementary code base for the research paper tit
 
 ## Project Overview
 
-This project This project processes genomic FASTA files to detect and quantify plasmids.The provided scripts automate the process of running PlasmidFinder, aggregating the results for downstream analysis, utilities for automated parameter sweeping and performance evaluation to optimize plasmid detection parameters.
+This project processes genomic FASTA files to detect and quantify plasmids.The provided scripts automate the process of running PlasmidFinder, aggregating the results for downstream analysis, utilities for automated parameter sweeping and performance evaluation to optimize plasmid detection parameters.
 
 ## Repository Structure
 ├── plasmidCount_env.yml \
