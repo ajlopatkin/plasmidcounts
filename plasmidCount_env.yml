@@ -1,6 +1,8 @@
 name: plasmidCount_env
 channels:
-  - defaultsAdd commentMore actions
+   - bioconda
+  - conda-forge
+  - defaults
   - r
 dependencies:
   - biopython=1.81=py311h5547dcb_0
