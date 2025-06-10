@@ -4,7 +4,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python=3.10        # plasmidfinder와 호환
+  - python=3.10       
   - biopython
   - blast
   - bzip2
