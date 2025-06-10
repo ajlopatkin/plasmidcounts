@@ -44,6 +44,3 @@ dependencies:
   - wheel
   - xz
   - zlib
-  - pip:
-      - scikit-learn
-      - matplotlib
