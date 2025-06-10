@@ -1,9 +1,9 @@
 name: plasmidCount_env
 channels:
    - bioconda
-  - conda-forge
-  - defaults
-  - r
+   - conda-forge
+   - defaults
+   - r
 dependencies:
   - biopython=1.81=py311h5547dcb_0
   - blast=2.6.0=boost1.64_2
