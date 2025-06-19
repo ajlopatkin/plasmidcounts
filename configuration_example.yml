@@ -1,0 +1,9 @@
+mode: sensitivity
+base_dir: /Volumes/ExtremeSSD/plasmidCount/final_code
+file_dirs: data
+read_types: short
+output_base: /Volumes/ExtremeSSD/plasmidCount/final_code
+output_dir: output_sensitivity 
+db_path: /Volumes/ExtremeSSD/plasmidCount/final_code/db
+python_path: /Users/meriel_kim/anaconda3/envs/plasmidCount_env/bin/python
+plasmidfinder_path: /Users/meriel_kim/anaconda3/envs/plasmidCount_env/bin/plasmidfinder.py
