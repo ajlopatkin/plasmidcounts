@@ -101,11 +101,11 @@ Open `configuration_example.yml` in any text editor and update the paths as show
 
 ```yaml
 mode: sensitivity                           # or 'plasmidcounts'
-base_dir: /full/path/to/your/script_folder  # where input data folders are located
-file_dirs: example_data/short_read          # name(s) of folders with FASTA files (comma-separated)
-read_types: short                           # corresponding read type(s)
+base_dir: /full/path/to/your/script_folder/example_data  # where input data folders are located
+file_dirs: short_read,long_read             # name(s) of folders with FASTA files (comma-separated)
+read_types: short,long                      # corresponding read type(s)
 output_base: /full/path/to/output_root      # base output directory
-output_dir: output_sensitivity              # folder name to create (automatically generated if it doesn't exist)
+output_dir: output                          # folder name to create (automatically generated if it doesn't exist)
 db_path: /full/path/to/db                   # path to PLSDB and its BLAST index files
 python_path: /full/path/to/python           # see below
 plasmidfinder_path: /full/path/to/plasmidfinder.py  # see below
