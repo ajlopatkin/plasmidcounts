@@ -97,21 +97,31 @@ conda activate plasmidCount_env
 
 3. **Edit the Configuration File**
 
-Open `configuration_example.yml` in any text editor and update the paths:
+Open `configuration_example.yml` in any text editor and update the paths as shown below:
 
-* Set `mode` to either:
+```yaml
+mode: sensitivity                           # or 'plasmidcounts'
+base_dir: /full/path/to/your/script_folder  # where input data folders are located
+file_dirs: example_data/short_read          # name(s) of folders with FASTA files (comma-separated)
+read_types: short                           # corresponding read type(s)
+output_base: /full/path/to/output_root      # base output directory
+output_dir: output_sensitivity              # folder name to create (automatically generated if it doesn't exist)
+db_path: /full/path/to/db                   # path to PLSDB and its BLAST index files
+python_path: /full/path/to/python           # see below
+plasmidfinder_path: /full/path/to/plasmidfinder.py  # see below
+```
 
-  * `plasmidcounts` for standard analysis
-  * `sensitivity` for sensitivity analysis
-* Update the following fields with full paths:
-
-  * `base_dir`, `file_dirs`, `read_types`, `output_base`, `output_dir` (if applicable), `db_path`
-  * `python_path` and `plasmidfinder_path`: Find these using:
+To find the correct paths for your environment, run the following commands in the activated conda environment:
 
 ```bash
 which python
 which plasmidfinder.py
 ```
+
+Copy and paste the results into `python_path` and `plasmidfinder_path`, respectively.
+
+> 📝 **Note**: The folder specified in `output_dir` will be created automatically inside `output_base` if it does not already exist.
+> If `mode: sensitivity`, you can omit `output_dir`, as the script will generate 100 `iteration_*/` folders automatically.
 
 4. **Navigate to the Script/Data Folder**
 
